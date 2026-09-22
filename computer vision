@@ -1,0 +1,538 @@
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+OUTPUT_PATH = "outputs/Q06_saved_image.jpg"
+
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    success = cv2.imwrite(OUTPUT_PATH, img)
+    print("Image saved successfully:", success)
+    print("Saved as:", OUTPUT_PATH)
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
+
+if gray is None:
+    print("Error: Image could not be loaded.")
+else:
+    plt.imshow(gray, cmap="gray")
+    plt.axis("off")
+    plt.title("Q7 - Grayscale Image")
+    plt.show()
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    plt.imshow(gray, cmap="gray")
+    plt.axis("off")
+    plt.title("Q8 - Grayscale using cvtColor")
+    plt.show()
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    plt.imshow(rgb)
+    plt.axis("off")
+    plt.title("Q9 - Matplotlib Display")
+    plt.show()
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width = img.shape[:2]
+    new_width = int(width * 0.5)
+    new_height = int(height * 0.5)
+
+    resized = cv2.resize(img, (new_width, new_height))
+
+    print("Original resolution:", width, "x", height)
+    print("New resolution:", new_width, "x", new_height)
+
+    plt.imshow(cv2.cvtColor(resized, cv2.COLOR_BGR2RGB))
+    plt.axis("off")
+    plt.title("Q10 - 50% Resized Image")
+    plt.show()
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width = img.shape[:2]
+    x = int(input(f"Enter x coordinate (0 to {width-1}): "))
+    y = int(input(f"Enter y coordinate (0 to {height-1}): "))
+
+    if 0 <= x < width and 0 <= y < height:
+        print(f"Pixel value at (x={x}, y={y}):", img[y, x])
+    else:
+        print("Error: Coordinate is outside the image.")
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+OUTPUT_PATH = "outputs/Q12_modified_pixel.jpg"
+
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width = img.shape[:2]
+    x = int(input(f"Enter x coordinate (0 to {width-1}): "))
+    y = int(input(f"Enter y coordinate (0 to {height-1}): "))
+    value = int(input("Enter new intensity value (0-255): "))
+
+    if 0 <= x < width and 0 <= y < height and 0 <= value <= 255:
+        img[y, x] = value
+        cv2.imwrite(OUTPUT_PATH, img)
+        print("Modified pixel value:", img[y, x])
+        print("Saved as:", OUTPUT_PATH)
+    else:
+        print("Invalid coordinate or intensity.")
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width = img.shape[:2]
+    x = int(input(f"Enter x coordinate (0 to {width-1}): "))
+    y = int(input(f"Enter y coordinate (0 to {height-1}): "))
+
+    if 0 <= x < width and 0 <= y < height:
+        b, g, r = img[y, x]
+        print("B:", int(b))
+        print("G:", int(g))
+        print("R:", int(r))
+    else:
+        print("Error: Coordinate is outside the image.")
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    b, g, r = cv2.split(img)
+
+    plt.figure(figsize=(12, 4))
+
+    plt.subplot(1, 3, 1)
+    plt.imshow(b, cmap="gray")
+    plt.axis("off")
+    plt.title("Blue Channel")
+
+    plt.subplot(1, 3, 2)
+    plt.imshow(g, cmap="gray")
+    plt.axis("off")
+    plt.title("Green Channel")
+
+    plt.subplot(1, 3, 3)
+    plt.imshow(r, cmap="gray")
+    plt.axis("off")
+    plt.title("Red Channel")
+
+    plt.show()
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    b, g, r = cv2.split(img)
+    merged = cv2.merge([b, g, r])
+
+    plt.imshow(cv2.cvtColor(merged, cv2.COLOR_BGR2RGB))
+    plt.axis("off")
+    plt.title("Q15 - Merged BGR Image")
+    plt.show()
+
+    print("Merge successful:", np.array_equal(img, merged))
+
+import cv2
+import numpy as np
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    print("Minimum intensity:", np.min(img))
+    print("Maximum intensity:", np.max(img))
+
+import cv2
+import numpy as np
+
+IMAGE_PATH = "sample.jpg"
+gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
+
+if gray is None:
+    print("Error: Image could not be loaded.")
+else:
+    mean_intensity = np.mean(gray)
+    print("Mean intensity:", mean_intensity)
+
+import cv2
+import numpy as np
+
+IMAGE_PATH = "sample.jpg"
+gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
+
+if gray is None:
+    print("Error: Image could not be loaded.")
+else:
+    mean_intensity = np.mean(gray)
+    std_intensity = np.std(gray)
+
+    print("Mean intensity:", mean_intensity)
+    print("Standard deviation:", std_intensity)
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+constant_image = np.full((256, 256), 128, dtype=np.uint8)
+
+plt.imshow(constant_image, cmap="gray", vmin=0, vmax=255)
+plt.axis("off")
+plt.title("Q19 - Intensity 128")
+plt.show()
+
+print("Shape:", constant_image.shape)
+print("Unique intensity values:", np.unique(constant_image))
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+ramp_row = np.arange(256, dtype=np.uint8)
+intensity_ramp = np.tile(ramp_row, (256, 1))
+
+plt.imshow(intensity_ramp, cmap="gray", vmin=0, vmax=255)
+plt.axis("off")
+plt.title("Q20 - Grayscale Intensity Ramp")
+plt.show()
+
+print("Minimum:", intensity_ramp.min())
+print("Maximum:", intensity_ramp.max())
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
+
+if gray is None:
+    print("Error: Image could not be loaded.")
+else:
+    quantized_4bit = (gray // 16) * 16
+    quantized_4bit = quantized_4bit.astype(np.uint8)
+
+    print("Number of unique displayed levels:", len(np.unique(quantized_4bit)))
+
+    plt.imshow(quantized_4bit, cmap="gray", vmin=0, vmax=255)
+    plt.axis("off")
+    plt.title("Q21 - 4-bit Quantized Image")
+    plt.show()
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+gray = cv2.imread(IMAGE_PATH, cv2.IMREAD_GRAYSCALE)
+
+if gray is None:
+    print("Error: Image could not be loaded.")
+else:
+    quantized_2bit = (gray // 64) * 64
+    quantized_2bit = quantized_2bit.astype(np.uint8)
+
+    print("Number of unique displayed levels:", len(np.unique(quantized_2bit)))
+
+    plt.imshow(quantized_2bit, cmap="gray", vmin=0, vmax=255)
+    plt.axis("off")
+    plt.title("Q22 - 2-bit Quantized Image")
+    plt.show()
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    original_height, original_width = img.shape[:2]
+    new_width = original_width // 2
+    new_height = original_height // 2
+
+    downsampled = cv2.resize(img, (new_width, new_height))
+
+    print("Original resolution:", original_width, "x", original_height)
+    print("New resolution:", new_width, "x", new_height)
+
+    plt.imshow(cv2.cvtColor(downsampled, cv2.COLOR_BGR2RGB))
+    plt.axis("off")
+    plt.title("Q23 - Downsampled Image")
+    plt.show()
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+OUTPUT_PATH = "outputs/Q24_cropped_roi.jpg"
+
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width = img.shape[:2]
+
+    x1 = int(input(f"Enter x1 (0 to {width-1}): "))
+    y1 = int(input(f"Enter y1 (0 to {height-1}): "))
+    x2 = int(input(f"Enter x2 ({x1+1} to {width}): "))
+    y2 = int(input(f"Enter y2 ({y1+1} to {height}): "))
+
+    if 0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height:
+        roi = img[y1:y2, x1:x2]
+
+        plt.imshow(cv2.cvtColor(roi, cv2.COLOR_BGR2RGB))
+        plt.axis("off")
+        plt.title("Q24 - Cropped ROI")
+        plt.show()
+
+        cv2.imwrite(OUTPUT_PATH, roi)
+        print("ROI saved as:", OUTPUT_PATH)
+        print("ROI resolution:", roi.shape[1], "x", roi.shape[0])
+    else:
+        print("Invalid coordinates.")
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+OUTPUT_PATH = "outputs/Q25_rotated_90.jpg"
+
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+    cv2.imwrite(OUTPUT_PATH, rotated)
+
+    plt.imshow(cv2.cvtColor(rotated, cv2.COLOR_BGR2RGB))
+    plt.axis("off")
+    plt.title("Q25 - Rotated 90 Degrees")
+    plt.show()
+
+    print("Rotated image saved as:", OUTPUT_PATH)
+
+# Computer Vision – Day 1
+
+## 25 Python + OpenCV Coding Questions
+
+This repository contains the 25 Day-1 Computer Vision coding questions from the provided practice PDF.
+
+### Technologies
+- Python
+- OpenCV (`cv2`)
+- NumPy
+- Matplotlib
+
+### Questions
+1. Read and display an image
+2. Check image loading
+3. Print height, width, channels
+4. Calculate total pixels
+5. Print image dtype
+6. Save with a different filename
+7. Read directly in grayscale
+8. Convert color to grayscale
+9. Display using Matplotlib and hide axis
+10. Resize to 50%
+11. Access a pixel at `(x, y)`
+12. Modify a selected pixel
+13. Print B, G, R values
+14. Split B, G, R channels
+15. Merge three channels
+16. Minimum and maximum intensity
+17. Mean intensity
+18. Mean and standard deviation
+19. Create 256×256 intensity-128 image
+20. Create intensity ramp 0–255
+21. 4-bit quantization
+22. 2-bit quantization
+23. Downsample by factor 2
+24. Crop a rectangular ROI
+25. Rotate by 90 degrees
+
+## Folder structure
+
+```text
+Computer-Vision/
+├── README.md
+├── sample.jpg
+├── Q01_read_display.py
+├── Q02_check_image.py
+├── Q03_image_dimensions.py
+├── Q04_total_pixels.py
+├── Q05_image_dtype.py
+├── Q06_save_image.py
+├── Q07_grayscale_read.py
+├── Q08_grayscale_convert.py
+├── Q09_matplotlib_display.py
+├── Q10_resize_50_percent.py
+├── Q11_pixel_value.py
+├── Q12_modify_pixel.py
+├── Q13_bgr_values.py
+├── Q14_split_channels.py
+├── Q15_merge_channels.py
+├── Q16_min_max_intensity.py
+├── Q17_mean_intensity.py
+├── Q18_mean_std.py
+├── Q19_constant_image.py
+├── Q20_intensity_ramp.py
+├── Q21_quantization_4bit.py
+├── Q22_quantization_2bit.py
+├── Q23_downsample.py
+├── Q24_crop_roi.py
+├── Q25_rotate_image.py
+└── outputs/
+```
+
+## How to run
+
+1. Install the required libraries:
+
+```bash
+pip install opencv-python numpy matplotlib
+```
+
+2. Put an image named `sample.jpg` in the repository root.
+3. Run each Python file from the repository root.
+4. For Q11, Q12, Q13 and Q24, enter valid coordinates when prompted.
+5. Output files generated by Q6, Q12, Q24 and Q25 are stored in `outputs/`.
+
+## GitHub
+
+Suggested repository name:
+
+`Computer-Vision`
+
+After creating the repository on GitHub, upload all files in this folder.
+
+Repository URL format:
+
+`https://github.com/YOUR-USERNAME/Computer-Vision`
+
+opencv-python
+numpy
+matplotlib
+
+Run Q06, Q12, Q24 and Q25 to generate output image files in this folder.
+
+import cv2
+import matplotlib.pyplot as plt
+
+IMAGE_PATH = "sample.jpg"
+
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded. Check IMAGE_PATH.")
+else:
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    plt.imshow(img_rgb)
+    plt.axis("off")
+    plt.title("Q1 - Original Image")
+    plt.show()
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Failed to load the image. Please check the file path.")
+else:
+    print("Success: Image loaded successfully.")
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width, channels = img.shape
+    print("Height:", height)
+    print("Width:", width)
+    print("Number of channels:", channels)
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    height, width = img.shape[:2]
+    total_pixels = height * width
+    print("Total number of pixels:", total_pixels)
+
+import cv2
+
+IMAGE_PATH = "sample.jpg"
+img = cv2.imread(IMAGE_PATH)
+
+if img is None:
+    print("Error: Image could not be loaded.")
+else:
+    print("Image data type:", img.dtype)
